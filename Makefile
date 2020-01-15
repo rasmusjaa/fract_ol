@@ -6,15 +6,17 @@
 #    By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/13 16:07:28 by rjaakonm          #+#    #+#              #
-#    Updated: 2020/01/14 15:01:06 by rjaakonm         ###   ########.fr        #
+#    Updated: 2020/01/15 18:06:57 by rjaakonm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
 SRCS =	srcs/main.c \
+		srcs/burning_ship.c \
 		srcs/controls.c \
 		srcs/help_funcs.c \
+		srcs/julia.c \
 		srcs/mandelbrot.c \
 		srcs/mouse.c
 
@@ -51,3 +53,11 @@ re: fclean all
 run:
 	gcc $(FLAGS) $(INCL) $(SRCS) $(LIB) -o $(NAME)
 	./fractol 1
+
+run2:
+	gcc $(FLAGS) $(INCL) $(SRCS) $(LIB) -o $(NAME)
+	./fractol 2
+
+run3:
+	gcc $(FLAGS) $(INCL) $(SRCS) $(LIB) -o $(NAME)
+	./fractol 3

@@ -6,23 +6,61 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:16:12 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/14 16:27:35 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/15 18:04:19 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <pthread.h>
 #include "mlx.h"
 #include "libft.h"
 #include "ft_printf.h"
 #include "fractol.h"
 
-void		make_fractal(t_fract *node)
+static void	*which_fract(void *data)
 {
+	t_fract	*node;
+
+	node = (t_fract *)data;
 	if(node->fractal == 1)
 		make_mandelbrot(node);
 	else if(node->fractal == 2)
-		make_mandelbrot(node);
+		make_julia(node);
 	else if(node->fractal == 3)
-		make_mandelbrot(node);
+		make_ship(node);
+	return (NULL);
+}
+
+static void	copy_node(t_fract *copy, t_fract *node, int i)
+{
+	ft_memcpy(copy, node, sizeof(t_fract));
+	copy->thread = i;
+}
+
+void		make_fractal(t_fract *node)
+{
+	pthread_t	*thread_group;
+	t_fract		*copies[THREADS];
+	int			i;
+
+	thread_group = malloc(sizeof(pthread_t) * THREADS);
+	i = 0;
+	while(i < THREADS)
+	{
+		copies[i] = (t_fract *)malloc(sizeof(t_fract));
+		copy_node(copies[i], node, i);
+		pthread_create(&thread_group[i], NULL, which_fract, copies[i]);
+		i++;
+	}
+	i = 0;
+	while(i < THREADS)
+	{
+		pthread_join(thread_group[i], NULL);
+		free(copies[i]);
+		i++;
+	}
+	free(thread_group);
+	mlx_put_image_to_window(node->mlx_ptr, node->win_ptr, node->img_ptr, 0, 0);
+	add_texts(node);
 }
 
 static void	mlx_stuff(t_fract *node)
@@ -72,7 +110,7 @@ int			main(int ac, char **av)
 		return (1);
 	if (ac != 2 || choose_fract(av[1], node) < 0)
 	{
-		ft_printf("Usage:\n1: Mandelbrot\n2: Julia\n3: Something\n");
+		ft_printf("Usage:\n1: Mandelbrot\n2: Julia\n3: Burning ship\n");
 		exit_free(node);
 	}
 	mlx_stuff(node);
