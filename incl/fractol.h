@@ -6,7 +6,7 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:16:51 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/16 13:43:13 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:28:33 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define WINDOW_X 1300
 # define WINDOW_Y 1000
 # define WHITE 0xffffff
-# define THREADS 20
+# define THREADS 50
 
 typedef struct		s_fract
 {
