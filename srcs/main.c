@@ -6,7 +6,7 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:16:12 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/15 18:04:19 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 10:42:23 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,13 @@ static void	*which_fract(void *data)
 	t_fract	*node;
 
 	node = (t_fract *)data;
-	if(node->fractal == 1)
+	if (node->fractal == 1)
 		make_mandelbrot(node);
-	else if(node->fractal == 2)
+	else if (node->fractal == 2)
 		make_julia(node);
-	else if(node->fractal == 3)
+	else if (node->fractal == 3)
 		make_ship(node);
 	return (NULL);
-}
-
-static void	copy_node(t_fract *copy, t_fract *node, int i)
-{
-	ft_memcpy(copy, node, sizeof(t_fract));
-	copy->thread = i;
 }
 
 void		make_fractal(t_fract *node)
@@ -44,7 +38,7 @@ void		make_fractal(t_fract *node)
 
 	thread_group = malloc(sizeof(pthread_t) * THREADS);
 	i = 0;
-	while(i < THREADS)
+	while (i < THREADS)
 	{
 		copies[i] = (t_fract *)malloc(sizeof(t_fract));
 		copy_node(copies[i], node, i);
@@ -52,7 +46,7 @@ void		make_fractal(t_fract *node)
 		i++;
 	}
 	i = 0;
-	while(i < THREADS)
+	while (i < THREADS)
 	{
 		pthread_join(thread_group[i], NULL);
 		free(copies[i]);
@@ -66,7 +60,7 @@ void		make_fractal(t_fract *node)
 static void	mlx_stuff(t_fract *node)
 {
 	node->mlx_ptr = mlx_init();
-	node->win_ptr = mlx_new_window(node->mlx_ptr, WINDOW_X, WINDOW_Y, "FRACTOL");
+	node->win_ptr = mlx_new_window(node->mlx_ptr, WINDOW_X, WINDOW_Y, "FRACT");
 	node_values(node);
 	node->img_ptr = mlx_new_image(node->mlx_ptr, WINDOW_X, WINDOW_Y);
 	node->data_addr = mlx_get_data_addr(node->img_ptr,
@@ -83,17 +77,17 @@ static void	mlx_stuff(t_fract *node)
 
 static int	choose_fract(char *str, t_fract *node)
 {
-	if(str[0] == '1' && str[1] == '\0')
+	if (str[0] == '1' && str[1] == '\0')
 	{
 		node->fractal = 1;
 		return (0);
 	}
-	if(str[0] == '2' && str[1] == '\0')
+	if (str[0] == '2' && str[1] == '\0')
 	{
 		node->fractal = 2;
 		return (0);
 	}
-	if(str[0] == '3' && str[1] == '\0')
+	if (str[0] == '3' && str[1] == '\0')
 	{
 		node->fractal = 3;
 		return (0);

@@ -6,16 +6,16 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 18:30:21 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/15 17:41:20 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 10:44:24 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "fractol.h"
-#include "ft_printf.h"
+#include <stdlib.h>
 
 /*
-** 123: fractal
+** 123: fractal, ~ rgb
 */
 
 static void	deal_key3(int key, t_fract *node)
@@ -34,6 +34,13 @@ static void	deal_key3(int key, t_fract *node)
 	{
 		node->fractal = 3;
 		node_values(node);
+	}
+	else if (key == 50)
+	{
+		if (node->rgb == 0)
+			node->rgb = 1;
+		else
+			node->rgb = 0;
 	}
 }
 
@@ -70,7 +77,7 @@ static void	deal_key2(int key, t_fract *node)
 static void	deal_key1(int key, t_fract *node)
 {
 	if (key == 53)
-		exit (0);
+		exit(0);
 	else if (key == 123)
 		node->move_x -= 20;
 	else if (key == 124)
@@ -94,7 +101,6 @@ static void	deal_key1(int key, t_fract *node)
 
 int			deal_key(int key, t_fract *node)
 {
-	ft_printf("key %d\n", key);
 	deal_key1(key, node);
 	deal_key2(key, node);
 	deal_key3(key, node);

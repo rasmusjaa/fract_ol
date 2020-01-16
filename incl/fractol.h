@@ -6,7 +6,7 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:16:51 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/15 18:06:36 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 10:22:55 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct		s_fract
 	int		size_line;
 	int		endian;
 	int		thread;
+	int		rgb;
 }					t_fract;
 
 void				make_fractal(t_fract *node);
@@ -61,6 +62,12 @@ void				node_values(t_fract *node);
 void				add_texts(t_fract *node);
 void				check_color(int nb, int limit_i, t_fract *node);
 void				refresh(t_fract *node);
+
+double				to_real(int x, int img_width, double r_min, double r_max);
+double				to_imaginary(int y, int img_height,
+						double i_min, double i_max);
+void				image_set(int x, int y, t_fract *node);
+void				copy_node(t_fract *copy, t_fract *node, int i);
 
 void				make_mandelbrot(t_fract *node);
 

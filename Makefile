@@ -6,7 +6,7 @@
 #    By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/13 16:07:28 by rjaakonm          #+#    #+#              #
-#    Updated: 2020/01/15 18:06:57 by rjaakonm         ###   ########.fr        #
+#    Updated: 2020/01/16 09:30:46 by rjaakonm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCS =	srcs/main.c \
 		srcs/burning_ship.c \
 		srcs/controls.c \
 		srcs/help_funcs.c \
+		srcs/help_funcs2.c \
 		srcs/julia.c \
 		srcs/mandelbrot.c \
 		srcs/mouse.c
