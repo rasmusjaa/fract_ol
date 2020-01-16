@@ -6,7 +6,7 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 14:39:08 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/16 13:11:42 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:18:39 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static int	julia(double c_r, double c_i, int limit_i, t_fract *node)
 			/ (node->zoom * node->img_width / (node->y_mult * 2));
 	while (i < limit_i && z_r * z_r + z_i * z_i < limit_z)
 	{
-		tmp = z_r * z_r - z_i * z_i + c_r;
-		z_i = (2 * z_i * z_r + c_i);
+		tmp = node->plus1 * z_r * z_r - z_i * z_i + c_r;
+		z_i = node->plus2 * 2 * z_i * z_r + c_i;
 		z_r = tmp;
 		i++;
 	}
@@ -45,8 +45,8 @@ void		make_julia(t_fract *node)
 	double	c_i;
 	int		nb;
 
-	c_r = -0.705 + node->z_r;
-	c_i = 0.26 + node->z_i;
+	c_r = 0.355 + node->z_r;
+	c_i = 0.355 + node->z_i;
 	y = node->thread;
 	while (y < node->img_height)
 	{

@@ -6,7 +6,7 @@
 #    By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/13 16:07:28 by rjaakonm          #+#    #+#              #
-#    Updated: 2020/01/16 09:30:46 by rjaakonm         ###   ########.fr        #
+#    Updated: 2020/01/16 13:41:53 by rjaakonm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCS =	srcs/main.c \
 		srcs/help_funcs2.c \
 		srcs/julia.c \
 		srcs/mandelbrot.c \
-		srcs/mouse.c
+		srcs/mouse.c \
+		srcs/own.c
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -62,3 +63,7 @@ run2:
 run3:
 	gcc $(FLAGS) $(INCL) $(SRCS) $(LIB) -o $(NAME)
 	./fractol 3
+
+run4:
+	gcc $(FLAGS) $(INCL) $(SRCS) $(LIB) -o $(NAME)
+	./fractol 4

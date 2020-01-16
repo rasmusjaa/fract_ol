@@ -6,7 +6,7 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:24:44 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/16 13:09:14 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:05:03 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static int		ship(double c_r, double c_i, int limit_i, t_fract *node)
 	limit_z = 4.0;
 	while (i < limit_i && z_r * z_r + z_i * z_i < limit_z)
 	{
-		tmp = z_r * z_r - z_i * z_i;
-		z_i = 2 * abs_d(z_i * z_r) - c_i;
+		tmp = node->plus1 * z_r * z_r - z_i * z_i;
+		z_i = node->plus2 * 2 * abs_d(z_i * z_r) - c_i;
 		z_r = tmp - c_r;
 		i++;
 	}

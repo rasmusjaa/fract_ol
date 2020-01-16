@@ -6,7 +6,7 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:16:51 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/16 13:03:26 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 13:43:13 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct		s_fract
 	int		cur_y;
 	double	z_r;
 	double	z_i;
+	double	plus1;
+	double	plus2;
 	int		img_width;
 	int		img_height;
 	int		limit_i;
@@ -69,6 +71,8 @@ void				make_mandelbrot(t_fract *node);
 void				make_julia(t_fract *node);
 
 void				make_ship(t_fract *node);
+
+void				make_own(t_fract *node);
 
 int					mouse_move(int x, int y, t_fract *node);
 int					mouse_release(int button, int x, int y, t_fract *node);

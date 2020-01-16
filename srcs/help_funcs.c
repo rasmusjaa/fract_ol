@@ -6,7 +6,7 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:25:28 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/16 13:10:40 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:11:21 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ static void	node_values2(t_fract *node)
 		node->move_x = -8600;
 		node->move_y = 100;
 	}
+	else if (node->fractal == 4)
+	{
+		node->img_width = 1000;
+		node->img_height = 1000;
+		node->limit_i = 150;
+	}
 }
 
 void		node_values(t_fract *node)
@@ -48,6 +54,8 @@ void		node_values(t_fract *node)
 	node->z_i = 0.0;
 	node->limit_z = 4.0;
 	node->rgb = 1;
+	node->plus1 = 1;
+	node->plus2 = 1;
 	if (node->fractal == 1)
 	{
 		node->img_width = 1000;
@@ -60,29 +68,29 @@ void		node_values(t_fract *node)
 
 void		add_texts(t_fract *node)
 {
-	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 10, 0xffffff,
-		"CONTROLS:");
-	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 30, 0xffffff,
-		"PROJECTIONS: 1 2 3");
-	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 50, 0xffffff,
+	mlx_string_put(node->mlx_ptr, node->win_ptr, 1015, 30, 0xffffff,
+		"PROJECTIONS: 1 2 3 4");
+	mlx_string_put(node->mlx_ptr, node->win_ptr, 1015, 50, 0xffffff,
 		"BLACK AND WHITE: ~");
-	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 70, 0xffffff,
+	mlx_string_put(node->mlx_ptr, node->win_ptr, 1015, 70, 0xffffff,
 		"UNLOCK TRANSMORPH: Space");
-	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 90, 0xffffff,
+	mlx_string_put(node->mlx_ptr, node->win_ptr, 1015, 90, 0xffffff,
 		"MOVE: Arrows / Mouse 1");
-	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 110, 0xffffff,
+	mlx_string_put(node->mlx_ptr, node->win_ptr, 1015, 110, 0xffffff,
 		"COLORS: Mouse 2");
-	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 130, 0xffffff,
+	mlx_string_put(node->mlx_ptr, node->win_ptr, 1015, 130, 0xffffff,
 		"CHOOSE CENTER: Mouse middle");
-	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 150, 0xffffff,
+	mlx_string_put(node->mlx_ptr, node->win_ptr, 1015, 150, 0xffffff,
 		"ZOOM: Mouse scroll");
-	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 170, 0xffffff,
+	mlx_string_put(node->mlx_ptr, node->win_ptr, 1015, 170, 0xffffff,
 		"ITERATIONS: Numpad +-");
-	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 190, 0xffffff,
+	mlx_string_put(node->mlx_ptr, node->win_ptr, 1015, 190, 0xffffff,
 		"STRETCH: Numpad 4 6 2 8");
-	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 210, 0xffffff,
+	mlx_string_put(node->mlx_ptr, node->win_ptr, 1015, 210, 0xffffff,
+		"MODIFY: Numpad 7 9 1 3");
+	mlx_string_put(node->mlx_ptr, node->win_ptr, 1015, 230, 0xffffff,
 		"RESET: Numpad 0");
-	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 230, 0xffffff,
+	mlx_string_put(node->mlx_ptr, node->win_ptr, 1015, 250, 0xffffff,
 		"EXIT: Esc");
 }
 

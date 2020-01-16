@@ -6,7 +6,7 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:16:12 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/16 10:42:23 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:09:36 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	*which_fract(void *data)
 		make_julia(node);
 	else if (node->fractal == 3)
 		make_ship(node);
+	else if (node->fractal == 4)
+		make_own(node);
 	return (NULL);
 }
 
@@ -78,22 +80,16 @@ static void	mlx_stuff(t_fract *node)
 static int	choose_fract(char *str, t_fract *node)
 {
 	if (str[0] == '1' && str[1] == '\0')
-	{
 		node->fractal = 1;
-		return (0);
-	}
-	if (str[0] == '2' && str[1] == '\0')
-	{
+	else if (str[0] == '2' && str[1] == '\0')
 		node->fractal = 2;
-		return (0);
-	}
-	if (str[0] == '3' && str[1] == '\0')
-	{
+	else if (str[0] == '3' && str[1] == '\0')
 		node->fractal = 3;
-		return (0);
-	}
-	else
+	else if (str[0] == '4' && str[1] == '\0')
+		node->fractal = 4;
+	else if (node->fractal == 0)
 		return (-1);
+	return (0);
 }
 
 int			main(int ac, char **av)
@@ -102,9 +98,11 @@ int			main(int ac, char **av)
 
 	if (!(node = (t_fract *)malloc(sizeof(t_fract))))
 		return (1);
+	node->fractal = 0;
 	if (ac != 2 || choose_fract(av[1], node) < 0)
 	{
-		ft_printf("Usage:\n1: Mandelbrot\n2: Julia\n3: Burning ship\n");
+		ft_printf("Usage:\n1: Mandelbrot\n2: Julia\n");
+		ft_printf("3: Burning ship\n4: Bonus\n");
 		exit_free(node);
 	}
 	mlx_stuff(node);

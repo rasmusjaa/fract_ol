@@ -6,7 +6,7 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 18:30:21 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/16 13:12:42 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:09:56 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,13 @@
 static void	deal_key3(int key, t_fract *node)
 {
 	if (key == 18)
-	{
 		node->fractal = 1;
-		node_values(node);
-	}
 	else if (key == 19)
-	{
 		node->fractal = 2;
-		node_values(node);
-	}
 	else if (key == 20)
-	{
 		node->fractal = 3;
-		node_values(node);
-	}
+	else if (key == 21)
+		node->fractal = 4;
 	else if (key == 50)
 	{
 		if (node->rgb == 0)
@@ -42,6 +35,8 @@ static void	deal_key3(int key, t_fract *node)
 		else
 			node->rgb = 0;
 	}
+	if (key == 18 || key == 19 || key == 20 || key == 21)
+		node_values(node);
 }
 
 /*
@@ -60,6 +55,14 @@ static void	deal_key2(int key, t_fract *node)
 		node->y_mult *= 0.9;
 	else if (key == 84)
 		node->y_mult *= 1.1;
+	else if (key == 89)
+		node->plus1 -= 0.1;
+	else if (key == 92)
+		node->plus1 += 0.1;
+	else if (key == 83)
+		node->plus2 -= 0.1;
+	else if (key == 85)
+		node->plus2 += 0.1;
 }
 
 /*

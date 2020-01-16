@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   own.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:24:44 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/16 14:05:17 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:01:25 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "fractol.h"
 
-static int		mandelbrot(double c_r, double c_i, int limit_i, t_fract *node)
+static double	abs_d(double x)
+{
+	if (x < 0)
+		return (-1 * x);
+	else
+		return (x);
+}
+
+static int		own(double c_r, double c_i, int limit_i, t_fract *node)
 {
 	int		i;
 	double	z_r;
@@ -27,15 +35,15 @@ static int		mandelbrot(double c_r, double c_i, int limit_i, t_fract *node)
 	limit_z = 4.0;
 	while (i < limit_i && z_r * z_r + z_i * z_i < limit_z)
 	{
-		tmp = node->plus1 * z_r * z_r - z_i * z_i;
-		z_i = node->plus2 * 2 * z_i * z_r + c_i;
+		tmp = abs_d(node->plus2 * z_r * z_r - z_i * z_i);
+		z_i = node->plus1 * 2 * z_i * z_r + c_i;
 		z_r = tmp + c_r;
 		i++;
 	}
 	return (i);
 }
 
-void			make_mandelbrot(t_fract *node)
+void			make_own(t_fract *node)
 {
 	int		y;
 	int		x;
@@ -49,11 +57,11 @@ void			make_mandelbrot(t_fract *node)
 		x = 0;
 		while (x < node->img_width)
 		{
-			c_r = (x - node->move_x - node->img_width / 2)
+			c_i = (x - node->move_x - node->img_width / 2)
 				/ (node->zoom * node->img_width / (node->x_mult * 2));
-			c_i = (y - node->move_y - node->img_height / 2)
+			c_r = (y - node->move_y - node->img_height / 2)
 				/ (node->zoom * node->img_width / (node->y_mult * 2));
-			nb = mandelbrot(c_r, c_i, node->limit_i, node);
+			nb = own(c_r, c_i, node->limit_i, node);
 			node->color = 0x000000;
 			if (nb != node->limit_i)
 				check_color(nb, node->limit_i, node);
