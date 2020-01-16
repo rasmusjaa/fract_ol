@@ -6,7 +6,7 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:16:51 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/16 10:22:55 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 13:03:26 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ typedef struct		s_fract
 	int		fractal;
 	int		cur_x;
 	int		cur_y;
-	double	r_min;
-	double	r_max;
-	double	i_min;
-	double	i_max;
 	double	z_r;
 	double	z_i;
 	int		img_width;
@@ -37,6 +33,8 @@ typedef struct		s_fract
 	int		color_x;
 	double	move_x;
 	double	move_y;
+	double	x_mult;
+	double	y_mult;
 	int		mousemove;
 	int		mouse_1;
 	int		mouse_2;
@@ -63,9 +61,6 @@ void				add_texts(t_fract *node);
 void				check_color(int nb, int limit_i, t_fract *node);
 void				refresh(t_fract *node);
 
-double				to_real(int x, int img_width, double r_min, double r_max);
-double				to_imaginary(int y, int img_height,
-						double i_min, double i_max);
 void				image_set(int x, int y, t_fract *node);
 void				copy_node(t_fract *copy, t_fract *node, int i);
 

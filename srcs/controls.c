@@ -6,7 +6,7 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 18:30:21 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/16 10:44:24 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 13:12:42 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,29 +45,21 @@ static void	deal_key3(int key, t_fract *node)
 }
 
 /*
-** numpad: / * r_min, 8 9 r_max, 5 6, i_min, 2 3 i_max
+** numpad: 0: reset, 4682: multiply
 */
 
 static void	deal_key2(int key, t_fract *node)
 {
 	if (key == 82)
 		node_values(node);
-	else if (key == 81)
-		node->r_min += 0.1;
-	else if (key == 75)
-		node->r_min -= 0.1;
-	else if (key == 91)
-		node->r_max += 0.1;
-	else if (key == 92)
-		node->r_max -= 0.1;
-	else if (key == 87)
-		node->i_min += 0.1;
+	else if (key == 86)
+		node->x_mult *= 1.1;
 	else if (key == 88)
-		node->i_min -= 0.1;
+		node->x_mult *= 0.9;
+	else if (key == 91)
+		node->y_mult *= 0.9;
 	else if (key == 84)
-		node->i_max += 0.1;
-	else if (key == 85)
-		node->i_max -= 0.1;
+		node->y_mult *= 1.1;
 }
 
 /*

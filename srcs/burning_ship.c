@@ -6,7 +6,7 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:24:44 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/16 10:27:49 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 13:09:14 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void			make_ship(t_fract *node)
 		x = 0;
 		while (x < node->img_width)
 		{
-			c_r = to_real(x - node->move_x, node->img_width,
-				node->r_min, node->r_max) / node->zoom;
-			c_i = to_imaginary(y - node->move_y, node->img_height,
-				node->i_min, node->i_max) / node->zoom;
+			c_r = (x - node->move_x - node->img_width / 2)
+				/ (node->zoom * node->img_width / (node->x_mult * 2));
+			c_i = -1 * (y - node->move_y - node->img_height / 2)
+				/ (node->zoom * node->img_width / (node->y_mult * 2));
 			nb = ship(c_r, c_i, node->limit_i, node);
 			node->color = 0x000000;
 			if (nb != node->limit_i)

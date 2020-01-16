@@ -6,7 +6,7 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:24:57 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/16 10:43:49 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 12:47:52 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,23 @@ int			mouse_release(int button, int x, int y, t_fract *node)
 
 static void	mouse_press2(int button, int x, int y, t_fract *node)
 {
-	node->move_x -= (x - WINDOW_X / 2);
-	node->move_y -= (y - WINDOW_Y / 2);
+	node->move_x -= (x - node->img_width / 2);
+	node->move_y -= (y - node->img_height / 2);
 	if (button == 4)
 	{
 		node->zoom *= 1.2;
 		node->move_x *= 1.2;
 		node->move_y *= 1.2;
-		node->move_x += (x - WINDOW_X / 2);
-		node->move_y += (y - WINDOW_Y / 2);
+		node->move_x += (x - node->img_width / 2);
+		node->move_y += (y - node->img_height / 2);
 	}
 	if (button == 5)
 	{
 		node->zoom *= 0.8;
 		node->move_x *= 0.8;
 		node->move_y *= 0.8;
-		node->move_x += (x - WINDOW_X / 2);
-		node->move_y += (y - WINDOW_Y / 2);
+		node->move_x += (x - node->img_width / 2);
+		node->move_y += (y - node->img_height / 2);
 	}
 }
 

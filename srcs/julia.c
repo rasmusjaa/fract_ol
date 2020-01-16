@@ -6,7 +6,7 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 14:39:08 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/16 10:29:34 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 13:11:42 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static int	julia(double c_r, double c_i, int limit_i, t_fract *node)
 
 	i = 0;
 	limit_z = 4.0;
-	z_r = to_real(node->cur_x - node->move_x, node->img_width,
-		node->r_min, node->r_max) / (node->zoom);
-	z_i = to_imaginary(node->cur_y - node->move_y, node->img_height,
-		node->i_min, node->i_max) / (node->zoom);
+	z_r = (node->cur_x - node->move_x - node->img_width / 2)
+			/ (node->zoom * node->img_width / (node->x_mult * 2));
+	z_i = (node->cur_y - node->move_y - node->img_height / 2)
+			/ (node->zoom * node->img_width / (node->y_mult * 2));
 	while (i < limit_i && z_r * z_r + z_i * z_i < limit_z)
 	{
 		tmp = z_r * z_r - z_i * z_i + c_r;

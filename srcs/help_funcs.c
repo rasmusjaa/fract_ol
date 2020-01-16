@@ -6,7 +6,7 @@
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:25:28 by rjaakonm          #+#    #+#             */
-/*   Updated: 2020/01/16 10:43:37 by rjaakonm         ###   ########.fr       */
+/*   Updated: 2020/01/16 13:10:40 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,17 @@ static void	node_values2(t_fract *node)
 {
 	if (node->fractal == 2)
 	{
-		node->r_min = -2.0;
-		node->r_max = 2.0;
-		node->i_min = -2.0;
-		node->i_max = 2.0;
-		node->img_width = 1300;
+		node->img_width = 1000;
 		node->img_height = 1000;
 		node->limit_i = 150;
 	}
 	else if (node->fractal == 3)
 	{
-		node->r_min = -1.8;
-		node->r_max = 1.0;
-		node->i_min = 1.5;
-		node->i_max = -1.5;
 		node->img_width = 1000;
 		node->img_height = 1000;
-		node->limit_i = 32;
+		node->limit_i = 85;
 		node->zoom = 10;
-		node->move_x = -6200;
+		node->move_x = -8600;
 		node->move_y = 100;
 	}
 }
@@ -43,7 +35,9 @@ static void	node_values2(t_fract *node)
 void		node_values(t_fract *node)
 {
 	node->mousemove = 0;
-	node->zoom = 1;
+	node->zoom = 0.5;
+	node->x_mult = 1;
+	node->y_mult = 1;
 	node->color = 0x000000;
 	node->color_x = 1;
 	node->move_x = 0;
@@ -56,13 +50,9 @@ void		node_values(t_fract *node)
 	node->rgb = 1;
 	if (node->fractal == 1)
 	{
-		node->r_min = -2.0;
-		node->r_max = 1.0;
-		node->i_min = -1.5;
-		node->i_max = 1.5;
 		node->img_width = 1000;
 		node->img_height = 1000;
-		node->limit_i = 50;
+		node->limit_i = 150;
 	}
 	else
 		node_values2(node);
@@ -89,7 +79,7 @@ void		add_texts(t_fract *node)
 	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 170, 0xffffff,
 		"ITERATIONS: Numpad +-");
 	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 190, 0xffffff,
-		"SHAPE: Numpad =/895623");
+		"STRETCH: Numpad 4 6 2 8");
 	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 210, 0xffffff,
 		"RESET: Numpad 0");
 	mlx_string_put(node->mlx_ptr, node->win_ptr, 1010, 230, 0xffffff,
